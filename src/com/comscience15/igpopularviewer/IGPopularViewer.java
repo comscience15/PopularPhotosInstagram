@@ -1,10 +1,12 @@
 package com.comscience15.igpopularviewer;
 
 import java.util.ArrayList;
+
 import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,8 +14,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
+
+import eu.erikw.PullToRefreshListView;
 
 public class IGPopularViewer extends Activity {
 	public static final String CLIENT_ID ="6e0c896f221747a1a8ca7e6e2e6536e6";
@@ -21,6 +26,7 @@ public class IGPopularViewer extends Activity {
 	public static String DEBUG_TAG = "DEBUG";
 	private ArrayList<InstagramModel> igModel;
 	private InstagramModelAdapter igModelAdapter;
+	PullToRefreshListView lvPTRPhotos;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +43,13 @@ public class IGPopularViewer extends Activity {
 		igModelAdapter = new InstagramModelAdapter(this, igModel);
 		
 		// Populate data into listview
-		ListView lvPhotos = (ListView) findViewById(R.id.lvPhotos);
+//		ListView lvPhotos = (ListView) findViewById(R.id.lvPhotos);
+		   // using PullToRefreshListView instead
+		lvPTRPhotos = (PullToRefreshListView) findViewById(R.id.lvPhotos);
 		
 		// Set adapter to listview
-		lvPhotos.setAdapter(igModelAdapter);
+//		lvPhotos.setAdapter(igModelAdapter);
+		lvPTRPhotos.setAdapter(igModelAdapter);
 		
 		// https://api.instagram.com/v1/media/popular?client_id=6e0c896f221747a1a8ca7e6e2e6536e6
 		// {"data" => [x] => "images" => "standard_resolution" => "url"} 
@@ -101,6 +110,8 @@ public class IGPopularViewer extends Activity {
 						Log.i(DEBUG_TAG, model.toString());
 						igModel.add(model);
 					}
+					// call onRefreshComplete to signify refresh has finished
+					lvPTRPhotos.onRefreshComplete();
 					// Notified adapter that it should populate new changes into listview
 					igModelAdapter.notifyDataSetChanged();
 				} catch (JSONException e){
@@ -114,10 +125,6 @@ public class IGPopularViewer extends Activity {
 				super.onFailure(statusCode, headers, responseString, throwable);
 			}
 		});
-		
-		
-		
-		
 	}
 
 	@Override
