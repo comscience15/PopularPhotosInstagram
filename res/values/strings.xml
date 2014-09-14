@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">IGPopularViewer</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+	<string name="popular_view">Popular Photos Instagram</string>
+	<string name="caption_default_text">This is a default caption</string>
+	<string name="Username_img_owner">Username</string>
+	<string name="likes_count">Likes count</string>
+	<string name="posted_time">postedTime</string>
+	<string name="tvComment">Comments</string>
+</resources>
