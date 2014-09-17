@@ -18,8 +18,8 @@ Completed User Stories:
 
   - [x] Required: Graphic, Caption, Username
   - [x] Optional: relative timestamp, like count, user profile image
-  - [/] Advanced: Add pull-to-refresh for popular stream with SwipeRefreshLayout
-  - [/] Advanced: Display each photo with the same style and proportions as the real Instagram (see screens below)
+  - [x] Advanced: Add pull-to-refresh for popular stream with SwipeRefreshLayout (PARTIALLY DONE)
+  - [x] Advanced: Display each photo with the same style and proportions as the real Instagram  (PARTIALLY DONE)
   - [] Advanced: Show latest comment for each photo (bonus: show last 2 comments)
  
 Notes:
@@ -29,7 +29,7 @@ I have been working on this project for basic requirement and also adding option
  
 Walkthrough of all users stories:
 
-![Video Walkthrough](todolist.gif)
+![Video Walkthrough](PopularIG6.gif)
 
 GIF created with [LiceCap]
 
