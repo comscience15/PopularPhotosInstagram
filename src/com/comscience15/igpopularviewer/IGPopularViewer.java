@@ -87,7 +87,7 @@ public class IGPopularViewer extends Activity {
 						InstagramModel model = new InstagramModel();
 						model.usernmae = objectPhotos.getJSONObject("user").getString("username");
 						// caption can be null so avoid exception of null value
-						if (objectPhotos.getJSONObject("caption") != null) {
+						if (objectPhotos.optJSONObject("caption") != null) {
 							model.caption = objectPhotos.getJSONObject("caption").getString("text");
 							model.postedTime = objectPhotos.getJSONObject("caption").getString("created_time");
 						}else {
@@ -96,15 +96,12 @@ public class IGPopularViewer extends Activity {
 						}
 						model.imageUrl = objectPhotos.getJSONObject("images").getJSONObject("standard_resolution").getString("url");
 						model.imageProfile = objectPhotos.getJSONObject("user").getString("profile_picture");
-						if (objectPhotos.getJSONObject("likes") != null) {
-							model.likesCount = objectPhotos.getJSONObject("likes").getString("count");
+						if (objectPhotos.optJSONObject("likes") != null) {
+							model.likesCount = objectPhotos.getJSONObject("likes").getInt("count");
 						}
-						
-//						JSONArray commentArr = new JSONArray(objectPhotos.getJSONObject("comments").getJSONObject("data"));
-//						for (int j = 0; j < 2; j++){
-//							JSONObject commentObj = commentArr.getJSONObject(j);
-//							model.commentUser = commentObj.getJSONObject("from").getString("username");
-//							model.comment = commentObj.getString("text");
+//						if (objectPhotos.optJSONObject("comments") != null) {
+//							model.commentUser = objectPhotos.getJSONObject("comments").getJSONObject("data").getJSONObject("from").getString("username");
+//							model.comment = objectPhotos.getJSONObject("comments").getJSONObject("data").getString("text");
 //						}
 						
 						Log.i(DEBUG_TAG, model.toString());

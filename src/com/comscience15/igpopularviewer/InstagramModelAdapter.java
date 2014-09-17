@@ -3,6 +3,8 @@ package com.comscience15.igpopularviewer;
 import java.util.List;
 
 import android.content.Context;
+import android.text.Html;
+import android.text.Spanned;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+//import com.pkmmte.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 public class InstagramModelAdapter extends ArrayAdapter<InstagramModel> {
@@ -47,15 +50,16 @@ public class InstagramModelAdapter extends ArrayAdapter<InstagramModel> {
 		TextView tvPostedTime = (TextView) convertView.findViewById(R.id.tvPostedTime);
 //		TextView tvComment = (TextView) convertView.findViewById(R.id.tvComment);
 		ImageView imgPhoto = (ImageView) convertView.findViewById(R.id.imgPhoto);
+//		CircularImageView imgProfile = (CircularImageView) convertView.findViewById(R.id.imgUN);
 		ImageView imgProfile = (ImageView) convertView.findViewById(R.id.imgUN);
 		
 		// populate the subviews (textfield, imageview) with the correct data
-		tvCaption.setText(igModel.usernmae.toUpperCase() + "    " + igModel.caption);
-		tvUN.setText(igModel.usernmae);
-//		tvPostedTime.setText(igModel.postedTime);
+		Spanned UNColor = Html.fromHtml("<font color=\"#206199\"><b>" + igModel.usernmae + "</b></font><font color=\"#000000\"></font>");
+		tvCaption.setText(UNColor + "    " + igModel.caption);
+		tvUN.setText(UNColor);
 		tvPostedTime.setText(setToDays(igModel.postedTime));
 //		tvComment.setText(igModel.commentUser + " " + igModel.comment);
-		tvLikesCount.setText(igModel.likesCount + " likes");
+		tvLikesCount.setText(Html.fromHtml("<font color=\"#206199\"><b>" + igModel.likesCount + " likes" + "  " + "</b></font><font color=\"#000000\"></font>"));
 		// set image height before loading
 //		imgPhoto.getLayoutParams().height = igModel.imageHeight;
 		// reset images from recycled view
@@ -71,9 +75,12 @@ public class InstagramModelAdapter extends ArrayAdapter<InstagramModel> {
 	}
 
 	private String setToDays(String postedTime) {
+		long time = 0;
 		// Change to day unit
-		long time = Long.valueOf(postedTime).longValue();
-		Log.i("TIME", time+"");
-		return (String) DateUtils.getRelativeTimeSpanString(time*1000, time*1000, time*1000);
+		if (postedTime != null) {
+			time = Long.valueOf(postedTime).longValue();
+			Log.i("TIME", time + "");
+		}
+		return (String) DateUtils.getRelativeTimeSpanString(time*1000);
 	}
 }

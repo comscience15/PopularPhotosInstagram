@@ -9,7 +9,7 @@ public class InstagramModel {
 	public String imageUrl;
 	public String imageProfile;
 	public int imageHeight;
-	public String likesCount;
+	public int likesCount;
 	public String postedTime;
 	public String comment;
 	public String commentUser;
