@@ -20,7 +20,7 @@ Completed User Stories:
   - [x] Optional: relative timestamp, like count, user profile image
   - [x] Advanced: Add pull-to-refresh for popular stream with SwipeRefreshLayout (PARTIALLY DONE)
   - [x] Advanced: Display each photo with the same style and proportions as the real Instagram  (PARTIALLY DONE)
-  - [] Advanced: Show latest comment for each photo (bonus: show last 2 comments)
+  - [ ] Advanced: Show latest comment for each photo (bonus: show last 2 comments)
  
 Notes:
 
